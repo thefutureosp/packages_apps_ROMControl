@@ -51,7 +51,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    
+
     <!-- toggle style -->
     <string-array name="toggle_style_entries" translatable="false">
         <item>@string/icon_only</item>

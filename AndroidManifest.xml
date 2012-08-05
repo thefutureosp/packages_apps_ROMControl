@@ -156,7 +156,7 @@
         </activity>
         <provider android:name=".vibrations.VibrationsProvider"
             android:exported="true"
-            android:authorities="com.aokp.romcontrol.Vibrations" /> 
+            android:authorities="com.aokp.romcontrol.Vibrations" />
         <activity
             android:name="CreateShortcut"
             android:theme="@style/Theme.CreateShortCut">
@@ -166,7 +166,15 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".fragments.Weather"
+            android:label="Weather Settings" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="com.aokp.romcontrol.SHORTCUT" />
+            </intent-filter>
+        </activity>
         <receiver
             android:name=".service.BootReceiver">
             <intent-filter>
@@ -187,6 +195,13 @@
                     android:host="2657"/>
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".service.WeatherReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="com.aokp.romcontrol.INTENT_WEATHER_REQUEST" />
+            </intent-filter>
+        </receiver>
 
         <service android:name=".service.BootService"/>
         <service android:name=".service.HeadphoneService"/>
@@ -194,5 +209,7 @@
         <service
             android:name=".service.ExternalCommandService"
             android:exported="false"/>
+        <service android:name=".weather.WeatherRefreshService" />
+        <service android:name=".weather.WeatherService" />
     </application>
 </manifest>
