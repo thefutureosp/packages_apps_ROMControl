@@ -168,7 +168,7 @@
         </activity>
         <activity
             android:name=".fragments.Weather"
-            android:label="Weather Settings" >
+            android:label="@string/title_weather" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -196,7 +196,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".service.WeatherReceiver"
+            android:name=".weather.WeatherReceiver"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="com.aokp.romcontrol.INTENT_WEATHER_REQUEST" />

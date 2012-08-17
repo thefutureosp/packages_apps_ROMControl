@@ -467,7 +467,7 @@ public class Lockscreens extends AOKPPreferenceFragment implements
                 Settings.System.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE, false));
         mLockCarouselSwitch.setChecked(Settings.System.getBoolean(cr,
                 Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL, false));
-        mLockEightTargetsSwitch.setChecked(Settings.System.getBoolean(cr, 
+        mLockEightTargetsSwitch.setChecked(Settings.System.getBoolean(cr,
                         Settings.System.LOCKSCREEN_TARGETS_USE_EIGHT, false));
     }
 
