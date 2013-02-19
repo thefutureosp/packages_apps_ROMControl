@@ -86,8 +86,6 @@ public class Navbar extends AOKPPreferenceFragment implements
     private static final String PREF_NAV_GLOW_COLOR = "nav_button_glow_color";
     private static final String PREF_GLOW_TIMES = "glow_times";
     private static final String PREF_NAVBAR_QTY = "navbar_qty";
-    private static final String PREF_NAVRING_AMOUNT = "pref_navring_amount";
-    private static final String ENABLE_NAVRING_LONG = "enable_navring_long";
     private static final String NAVIGATION_BAR_WIDGETS = "navigation_bar_widgets";
     private static final String PREF_MENU_ARROWS = "navigation_bar_menu_arrow_keys";
 
@@ -95,8 +93,6 @@ public class Navbar extends AOKPPreferenceFragment implements
     public static final int REQUEST_PICK_LANDSCAPE_ICON = 201;
 
     public static final String PREFS_NAV_BAR = "navbar";
-
-    Preference mNavRingTargets;
 
     // move these later
     ColorPickerPreference mNavigationBarColor;
@@ -106,9 +102,7 @@ public class Navbar extends AOKPPreferenceFragment implements
     ListPreference menuDisplayLocation;
     ListPreference mNavBarMenuDisplay;
     ListPreference mNavBarButtonQty;
-    ListPreference mNavRingButtonQty;
     SeekBarPreference mButtonAlpha;
-    CheckBoxPreference mEnableNavringLong;
     CheckBoxPreference mMenuArrowKeysCheckBox;
     Preference mConfigureWidgets;
 
@@ -140,8 +134,6 @@ public class Navbar extends AOKPPreferenceFragment implements
 
         mPicker = new ShortcutPickerHelper(this, this);
 
-        mNavRingTargets = findPreference("navring_settings");
-
         // Get NavBar Actions
         mActionCodes = NavBarHelpers.getNavBarActions();
         mActions = new String[mActionCodes.length];
@@ -160,21 +152,10 @@ public class Navbar extends AOKPPreferenceFragment implements
         mNavBarMenuDisplay.setValue(Settings.System.getInt(mContentRes,
                 Settings.System.MENU_VISIBILITY,0) + "");
 
-        mNavRingButtonQty = (ListPreference) findPreference(PREF_NAVRING_AMOUNT);
-        mNavRingButtonQty.setOnPreferenceChangeListener(this);
-        mNavRingButtonQty.setValue(Settings.System.getInt(mContentRes,
-                Settings.System.SYSTEMUI_NAVRING_AMOUNT, 1) + "");
-
         mNavBarButtonQty = (ListPreference) findPreference(PREF_NAVBAR_QTY);
         mNavBarButtonQty.setOnPreferenceChangeListener(this);
         mNavBarButtonQty.setValue(Settings.System.getInt(mContentRes,
                 Settings.System.NAVIGATION_BAR_BUTTONS_QTY, 3) + "");
-
-        mEnableNavringLong = (CheckBoxPreference) findPreference("enable_navring_long");
-        mEnableNavringLong.setChecked(Settings.System.getBoolean(mContentRes,
-                Settings.System.SYSTEMUI_NAVRING_LONG_ENABLE, false));
-
-        mPicker = new ShortcutPickerHelper(this, this);
 
         mNavigationBarColor = (ColorPickerPreference) findPreference(PREF_NAV_COLOR);
         mNavigationBarColor.setOnPreferenceChangeListener(this);
@@ -258,20 +239,6 @@ public class Navbar extends AOKPPreferenceFragment implements
                     Settings.System.NAVIGATION_BAR_ALLCOLOR,
                     ((CheckBoxPreference) preference).isChecked() ? true : false);
             return true;
-        } else if (preference == mEnableNavringLong) {
-
-            Settings.System.putBoolean(mContentRes,
-                    Settings.System.SYSTEMUI_NAVRING_LONG_ENABLE,
-                    ((CheckBoxPreference) preference).isChecked() ? true : false);
-            resetNavRingLong();
-            return true;
-        } else if (preference == mNavRingTargets) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            NavRingTargets fragment = new NavRingTargets();
-            ft.addToBackStack("config_nav_ring");
-            ft.replace(this.getId(), fragment);
-            ft.commit();
-            return true;
         } else if (preference == mConfigureWidgets) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             WidgetConfigurationFragment fragment = new WidgetConfigurationFragment();
@@ -298,14 +265,6 @@ public class Navbar extends AOKPPreferenceFragment implements
         } else if (preference == mNavBarMenuDisplay) {
             Settings.System.putInt(mContentRes,
                     Settings.System.MENU_VISIBILITY, Integer.parseInt((String) newValue));
-            return true;
-        } else if (preference == mNavRingButtonQty) {
-            int val = Integer.parseInt((String) newValue);
-            Settings.System.putInt(mContentRes,
-                    Settings.System.SYSTEMUI_NAVRING_AMOUNT, val);
-            resetNavRing();
-            resetNavRingLong();
-            refreshSettings();
             return true;
         } else if (preference == mNavBarButtonQty) {
             int val = Integer.parseInt((String) newValue);
@@ -421,14 +380,6 @@ public class Navbar extends AOKPPreferenceFragment implements
             return true;
         }
         return false;
-    }
-
-    public void resetNavRing() {
-            // TODO : FIXME
-    }
-
-    public void resetNavRingLong() {
-            // TODO : FIXME
     }
 
     private void updateGlowTimesSummary() {
