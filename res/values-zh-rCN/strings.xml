@@ -73,7 +73,6 @@
     <string name="title_show_torch_toggle">显示手电筒开关</string>
     <string name="title_show_airplane_toggle">显示飞行模式开关</string>
     <string name="title_show_navbar_hide">显示导航栏控制</string>
-    <string name="title_show_reboot_keyguard">锁屏时显示重启</string>
 
     <!-- Power Saving 省电模式 -->
     <string name="title_pref_powersaving_pref_mode">启用省电模式</string>
@@ -107,6 +106,7 @@
     <string name="navbar_cat">导航栏</string>
     <string name="notification_cat">通知栏</string>
     <string name="tabletUI_cat">平板界面</string>
+    <string name="enable_volume_options">启用音量面板</string>
     <string name="status_bar_notif_count_title">显示通知数量</string>
     <string name="status_bar_notif_count_summary">在状态栏显示未查看的通知数量</string>
     <string name="vibrate_notif_expand_title">展开振动</string>
@@ -344,6 +344,21 @@
     <string name="navbar_action_notifications">通知栏</string>
     <string name="navbar_action_none">空</string>
     <string name="navbar_widgets">导航栏小部件</string>
+    <string name="navbar_enable_bar">启用导航栏</string>
+    <string name="navigation_bar_height_title">导航栏高度（竖屏）</string>
+    <string name="navigation_bar_height_summary">设置竖屏时导航栏高度</string>
+    <string name="navigation_bar_height_landscape_title">导航栏高度（横屏）</string>
+    <string name="navigation_bar_height_landscape_summary">设置横屏时导航栏高度</string>
+    <string name="navigation_bar_width_title">导航栏宽度</string>
+    <string name="navigation_bar_width_summary">设置当导航栏在侧面时的宽度</string>
+    <string name="navbar_enable_dialog_title">需要重启生效！</string>
+    <string name="navbar_enable_dialog_msg">你 <b>应该</b> 立刻重启以确保一切能够正常运行！</string>
+    <string name="navbar_enable_dialog_negative">稍后重启</string>
+    <string name="navbar_enable_dialog_Positive">立刻重启</string>
+    <string name="navbar_height_dialog_title">需要重启生效！</string>
+    <string name="navbar_height_dialog_summary">请重启以确保导航栏高度设置正常！</string>
+    <string name="navbar_height_dialog_button_later">稍后重启</string>
+    <string name="navbar_height_dialog_button_reboot">立刻重启</string>
     <string name="navigation_bar_color_title">导航栏颜色</string>
     <string name="navigation_bar_tint_title">导航栏按键颜色</string>
     <string name="navigation_bar_colorall_title">着色所有按键</string>
@@ -429,6 +444,7 @@
     <string name="led_keep_app">保持</string>
     <string name="led_custom_title">自定义 LED 程序</string>
     <string name="led_custom_message">"你想要变更应用程序: "</string>
+
     <string name="led_test_notification">测试 LED</string>
     <string name="led_test_notification_message_now">"现在测试应用程序： "</string>
     <string name="led_test_notification_message_note">".  请关闭屏幕后观察 LED 灯。在你观察完毕之前不要点击确定按钮。"</string>
@@ -693,8 +709,6 @@
     <string name="weather_45">雷阵雨</string>
     <string name="weather_46">阵雪</string>
     <string name="weather_47">地区性雷雨</string>
-
-
 
     <!-- Miscellaneous 杂项 -->
     <string name="location_unavailable">无法获取当前位置的天气信息</string>
