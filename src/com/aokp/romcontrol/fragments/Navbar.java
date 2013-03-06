@@ -170,8 +170,8 @@ public class Navbar extends AOKPPreferenceFragment implements
         mGlowTimes = (ListPreference) findPreference(PREF_GLOW_TIMES);
         mGlowTimes.setOnPreferenceChangeListener(this);
 
-        float defaultAlpha = Settings.System.getFloat(mContentRes, Settings.System.NAVIGATION_BAR_BUTTON_ALPHA,
-                0.6f);
+        float defaultAlpha = Settings.System.getFloat(mContentRes,
+                Settings.System.NAVIGATION_BAR_BUTTON_ALPHA,0.6f);
         mButtonAlpha = (SeekBarPreference) findPreference("button_transparency");
         mButtonAlpha.setInitValue((int) (defaultAlpha * 100));
         mButtonAlpha.setOnPreferenceChangeListener(this);
@@ -259,7 +259,7 @@ public class Navbar extends AOKPPreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 
         if (preference == menuDisplayLocation) {
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(mContentRes,
                     Settings.System.MENU_LOCATION, Integer.parseInt((String) newValue));
             return true;
         } else if (preference == mNavBarMenuDisplay) {
@@ -271,44 +271,6 @@ public class Navbar extends AOKPPreferenceFragment implements
             Settings.System.putInt(mContentRes,
                     Settings.System.NAVIGATION_BAR_BUTTONS_QTY, val);
             refreshSettings();
-            return true;
-        } else if (preference == mNavigationBarColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(mContentRes,
-                    Settings.System.NAVIGATION_BAR_TINT, intHex);
-            refreshSettings();
-            return true;
-        } else if (preference == mNavigationBarGlowColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(mContentRes,
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, intHex);
-            refreshSettings();
-            return true;
-        } else if (preference == mGlowTimes) {
-            // format is (on|off) both in MS
-            String value = (String) newValue;
-            String[] breakIndex = value.split("\\|");
-            int onTime = Integer.valueOf(breakIndex[0]);
-            int offTime = Integer.valueOf(breakIndex[1]);
-
-            Settings.System.putInt(mContentRes,
-                    Settings.System.NAVIGATION_BAR_GLOW_DURATION[0], offTime);
-            Settings.System.putInt(mContentRes,
-                    Settings.System.NAVIGATION_BAR_GLOW_DURATION[1], onTime);
-            updateGlowTimesSummary();
-            return true;
-        } else if (preference == mButtonAlpha) {
-            float val = Float.parseFloat((String) newValue);
-            Log.e("R", "value: " + val * 0.01f);
-            Settings.System.putFloat(mContentRes,
-                    Settings.System.NAVIGATION_BAR_BUTTON_ALPHA,
-                    val * 0.01f);
             return true;
         } else if ((preference.getKey().startsWith("navbar_action"))
                 || (preference.getKey().startsWith("navbar_longpress"))) {
@@ -347,7 +309,7 @@ public class Navbar extends AOKPPreferenceFragment implements
                     Integer.valueOf(String.valueOf(newValue)));
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(mContentRes,
                     Settings.System.NAVIGATION_BAR_TINT, intHex);
             return true;
         } else if (preference == mNavigationBarGlowColor) {
@@ -373,13 +335,17 @@ public class Navbar extends AOKPPreferenceFragment implements
             return true;
         } else if (preference == mButtonAlpha) {
             float val = Float.parseFloat((String) newValue);
-            Log.e("R", "value: " + val * 0.01f);
             Settings.System.putFloat(mContentRes,
                     Settings.System.NAVIGATION_BAR_BUTTON_ALPHA,
                     val * 0.01f);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Dialog onCreateDialog(int dialogId) {
+        return null;
     }
 
     private void updateGlowTimesSummary() {
@@ -435,11 +401,9 @@ public class Navbar extends AOKPPreferenceFragment implements
                     super.onActivityResult(requestCode, resultCode, data);
                     return;
                 }
-                Settings.System.putString(
-                        getContentResolver(),
+                Settings.System.putString(mContentRes,
                         Settings.System.NAVIGATION_CUSTOM_APP_ICONS[mPendingIconIndex], "");
-                Settings.System.putString(
-                        getContentResolver(),
+                Settings.System.putString(mContentRes,
                         Settings.System.NAVIGATION_CUSTOM_APP_ICONS[mPendingIconIndex],
                         Uri.fromFile(
                                 new File(mContext.getFilesDir(), iconName)).getPath());
@@ -525,7 +489,7 @@ public class Navbar extends AOKPPreferenceFragment implements
                 }
             });
 
-            String customIconUri = Settings.System.getString(getContentResolver(),
+            String customIconUri = Settings.System.getString(mContentRes,
                     Settings.System.NAVIGATION_CUSTOM_APP_ICONS[i]);
             if (customIconUri != null && customIconUri.length() > 0) {
                 File f = new File(Uri.parse(customIconUri).getPath());
@@ -618,10 +582,10 @@ public class Navbar extends AOKPPreferenceFragment implements
     private String getProperSummary(int i, boolean longpress) {
         String uri = "";
         if (longpress)
-            uri = Settings.System.getString(getActivity().getContentResolver(),
+            uri = Settings.System.getString(mContentRes,
                     Settings.System.NAVIGATION_LONGPRESS_ACTIVITIES[i]);
         else
-            uri = Settings.System.getString(getActivity().getContentResolver(),
+            uri = Settings.System.getString(mContentRes,
                     Settings.System.NAVIGATION_CUSTOM_ACTIVITIES[i]);
         if (uri == null)
             return getResources().getString(R.string.navbar_action_none);
@@ -663,10 +627,8 @@ public class Navbar extends AOKPPreferenceFragment implements
                 mPendingNavBarCustomAction.activitySettingName, uri)) {
             if (mPendingNavBarCustomAction.iconIndex != -1) {
                 if (bmp == null) {
-                    Settings.System
-                            .putString(
-                                    getContentResolver(),
-                                    Settings.System.NAVIGATION_CUSTOM_APP_ICONS[mPendingNavBarCustomAction.iconIndex],
+                    Settings.System.putString(mContentRes,
+                            Settings.System.NAVIGATION_CUSTOM_APP_ICONS[mPendingNavBarCustomAction.iconIndex],
                                     "");
                 } else {
                     String iconName = getIconFileName(mPendingNavBarCustomAction.iconIndex);
@@ -677,13 +639,9 @@ public class Navbar extends AOKPPreferenceFragment implements
                         return; // NOOOOO
                     }
                     bmp.compress(Bitmap.CompressFormat.PNG, 100, iconStream);
-                    Settings.System
-                            .putString(
-                                    getContentResolver(),
+                    Settings.System.putString(mContentRes,
                                     Settings.System.NAVIGATION_CUSTOM_APP_ICONS[mPendingNavBarCustomAction.iconIndex], "");
-                    Settings.System
-                            .putString(
-                                    getContentResolver(),
+                    Settings.System.putString(mContentRes,
                                     Settings.System.NAVIGATION_CUSTOM_APP_ICONS[mPendingNavBarCustomAction.iconIndex],
                                     Uri.fromFile(mContext.getFileStreamPath(iconName)).toString());
                 }
@@ -706,34 +664,6 @@ public class Navbar extends AOKPPreferenceFragment implements
     public void onResume() {
         super.onResume();
         refreshSettings();
-    }
-
-    public static class NavbarLayout extends ListFragment {
-        private static final String TAG = "NavbarLayout";
-
-        Context mContext;
-
-        /** Called when the activity is first created. */
-        @Override
-        public void onCreate(Bundle icicle) {
-            super.onCreate(icicle);
-
-            mContext = getActivity().getBaseContext();
-        }
-
-        public void onActivityCreated(Bundle savedInstanceState) {
-            super.onActivityCreated(savedInstanceState);
-        };
-
-        @Override
-        public void onDestroy() {
-            super.onDestroy();
-        }
-
-        @Override
-        public void onResume() {
-            super.onResume();
-        }
     }
 
 }
