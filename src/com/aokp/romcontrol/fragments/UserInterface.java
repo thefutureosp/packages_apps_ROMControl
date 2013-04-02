@@ -91,6 +91,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     private static final CharSequence PREF_NOTIFICATION_VIBRATE = "notification";
     private static final CharSequence PREF_NAVBAR = "navbar";
     private static final CharSequence PREF_MISC = "misc";
+    private static final CharSequence PREF_DISPLAY = "display";
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     //private static final int REQUEST_PICK_CUSTOM_ICON = 202; //unused
@@ -188,7 +189,7 @@ public class UserInterface extends AOKPPreferenceFragment {
         mLongPressToKill.setChecked(Settings.System.getInt(mContentResolver,
                 Settings.System.KILL_APP_LONGPRESS_BACK, 0) == 1);
         if (!hasHardwareButtons) {
-            ((PreferenceGroup)findPreference(PREF_NAVBAR)).removePreference(mLongPressToKill);
+            getPreferenceScreen().removePreference(((PreferenceGroup) findPreference(PREF_MISC)));
         }
 
         mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
@@ -210,7 +211,7 @@ public class UserInterface extends AOKPPreferenceFragment {
         // hide option if device is already set to never wake up
         if(!mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
-            ((PreferenceGroup) findPreference(PREF_MISC)).removePreference(mWakeUpWhenPluggedOrUnplugged);
+            ((PreferenceGroup) findPreference(PREF_DISPLAY)).removePreference(mWakeUpWhenPluggedOrUnplugged);
         }
 
         setHasOptionsMenu(true);
