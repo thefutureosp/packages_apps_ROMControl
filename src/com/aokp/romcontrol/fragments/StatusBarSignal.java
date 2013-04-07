@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.AOKPPreferenceFragment;
+import com.aokp.romcontrol.util.Helpers;
 
 public class StatusBarSignal extends AOKPPreferenceFragment implements
         OnPreferenceChangeListener {
@@ -79,6 +80,7 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
             int val = Integer.parseInt((String) newValue);
             Settings.System.putInt(mContentRes,
                     Settings.System.STATUSBAR_SIGNAL_TEXT, val);
+            Helpers.restartSystemUI();
             return true;
 
         } else if (preference == mColorPicker) {
@@ -96,6 +98,7 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
             int val = Integer.parseInt((String) newValue);
             Settings.System.putInt(mContentRes,
                     Settings.System.STATUSBAR_WIFI_SIGNAL_TEXT, val);
+            Helpers.restartSystemUI();
             return true;
         } else if (preference == mWifiColorPicker) {
             String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
