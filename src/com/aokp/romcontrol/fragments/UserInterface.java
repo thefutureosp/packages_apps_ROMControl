@@ -2,6 +2,7 @@ package com.aokp.romcontrol.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -120,6 +121,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     private String mBootAnimationPath;
 
     private Random randomGenerator = new Random();
+    private static ContentResolver mContentResolver;
     // previous random; so we don't repeat
     private static int mLastRandomInsultIndex = -1;
     private String[] mInsults;
@@ -134,13 +136,15 @@ public class UserInterface extends AOKPPreferenceFragment {
         setTitle(R.string.title_ui);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs_ui);
+        
+        mContentResolver = getContentResolver();
 
         PreferenceScreen prefs = getPreferenceScreen();
         mInsults = mContext.getResources().getStringArray(
                 R.array.disable_bootanimation_insults);
 
         mAllow180Rotation = (CheckBoxPreference) findPreference(PREF_180);
-        mUserRotationAngles = Settings.System.getInt(cr,
+        mUserRotationAngles = Settings.System.getInt(mContentResolver,
                 Settings.System.ACCELEROMETER_ROTATION_ANGLES, -1);
         if (mUserRotationAngles < 0) {
             // Not set by user so use these defaults
@@ -153,9 +157,8 @@ public class UserInterface extends AOKPPreferenceFragment {
         mAllow180Rotation.setChecked(mUserRotationAngles == (1 | 2 | 4 | 8));
 
         mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF_COUNT);
-        mStatusBarNotifCount.setChecked(Settings.System.getBoolean(mContext
-                .getContentResolver(), Settings.System.STATUSBAR_NOTIF_COUNT,
-                false));
+        mStatusBarNotifCount.setChecked(Settings.System.getBoolean(mContentResolver, 
+            Settings.System.STATUSBAR_NOTIF_COUNT, false));
 
         mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
 
@@ -165,7 +168,7 @@ public class UserInterface extends AOKPPreferenceFragment {
         updateCustomLabelTextSummary();
 
         mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
-        mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+        mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContentResolver,
                 Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
 
         mNotificationWallpaper = findPreference(PREF_NOTIFICATION_WALLPAPER);
@@ -173,7 +176,7 @@ public class UserInterface extends AOKPPreferenceFragment {
         mWallpaperAlpha = (Preference) findPreference(PREF_NOTIFICATION_WALLPAPER_ALPHA);
 
         mVibrateOnExpand = (CheckBoxPreference) findPreference(PREF_VIBRATE_NOTIF_EXPAND);
-        mVibrateOnExpand.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+        mVibrateOnExpand.setChecked(Settings.System.getBoolean(mContentResolver,
                 Settings.System.VIBRATE_NOTIF_EXPAND, true));
         if (!hasVibration) {
             ((PreferenceGroup)findPreference("notification")).removePreference(mVibrateOnExpand);
@@ -200,7 +203,7 @@ public class UserInterface extends AOKPPreferenceFragment {
                         Settings.System.UI_FORCE_OVERFLOW_BUTTON, false));
 
         mWakeUpWhenPluggedOrUnplugged = (CheckBoxPreference) findPreference(PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
-        mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+        mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getBoolean(mContentResolver,
                         Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, true));
 
         // hide option if device is already set to never wake up
@@ -277,12 +280,12 @@ public class UserInterface extends AOKPPreferenceFragment {
             final Preference preference) {
         if (preference == mAllow180Rotation) {
             boolean checked = ((CheckBoxPreference) preference).isChecked();
-            Settings.System.putInt(mContext.getContentResolver(),
+            Settings.System.putInt(mContentResolver,
                     Settings.System.ACCELEROMETER_ROTATION_ANGLES,
                     checked ? (1 | 2 | 4 | 8) : (1 | 2 | 8 ));
             return true;
         } else if (preference == mStatusBarNotifCount) {
-            Settings.System.putBoolean(mContext.getContentResolver(),
+            Settings.System.putBoolean(mContentResolver,
                     Settings.System.STATUSBAR_NOTIF_COUNT,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
@@ -412,7 +415,7 @@ public class UserInterface extends AOKPPreferenceFragment {
 
             alert.show();
         } else if (preference == mVibrateOnExpand) {
-            Settings.System.putBoolean(mContext.getContentResolver(),
+            Settings.System.putBoolean(mContentResolver,
                     Settings.System.VIBRATE_NOTIF_EXPAND,
                     ((CheckBoxPreference) preference).isChecked());
             Helpers.restartSystemUI();
