@@ -51,7 +51,6 @@ import com.aokp.romcontrol.util.AbstractAsyncSuCMDProcessor;
 import com.aokp.romcontrol.util.CMDProcessor;
 import com.aokp.romcontrol.util.Executable;
 import com.aokp.romcontrol.util.Helpers;
-import com.aokp.romcontrol.widgets.AlphaSeekBar;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -70,7 +69,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 @SuppressWarnings("InstanceVariableMayNotBeInitialized")
-public class UserInterface extends AOKPPreferenceFragment implements OnPreferenceChangeListener {
+public class UserInterface extends AOKPPreferenceFragment {
     public final String TAG = getClass().getSimpleName();
     private static final boolean DEBUG = false;
 
@@ -442,9 +441,6 @@ public class UserInterface extends AOKPPreferenceFragment implements OnPreferenc
             Settings.System.putBoolean(mContentResolver,
                     Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
                     ((TwoStatePreference) preference).isChecked());
-        } else if ("transparency_dialog".equals(preference.getKey())) {
-            openTransparencyDialog();
-            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
