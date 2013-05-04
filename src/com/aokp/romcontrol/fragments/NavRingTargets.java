@@ -18,7 +18,8 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import java.net.URISyntaxException;
-
+import static com.android.internal.util.aokp.AwesomeConstants.*;
+import com.android.internal.util.aokp.NavRingHelpers;
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.util.ShortcutPickerHelper;

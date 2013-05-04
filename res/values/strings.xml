@@ -21,6 +21,7 @@
     <string name="header_system">System</string>
     <string name="sound">Sound</string>
     <string name="lockscreen_options">Lockscreen</string>
+    <string name="title_ribbon">Ribbons</string>
     <string name="weather">Weather</string>
     <string name="tools">Tools</string>
 
@@ -40,6 +41,7 @@
     <string name="title_weather">Weather Settings</string>
     <string name="title_performance">Performance Settings</string>
     <string name="title_clipboard_share">Share to Clipboard</string>
+    <string name="ribbon_settings_title">Ribbons</string>
 
     <!-- Header Summaries -->
     <string name="header_summary_clock">@null</string>
@@ -55,9 +57,12 @@
     <string name="header_summary_lockscreens">@null</string>
     <string name="header_summary_weather">@null</string>
     <string name="header_summary_vibrations">@null</string>
+    <string name="ribbon_settings_summary">@null</string>
 
     <!-- Menu Strings -->
     <string name="menu_nav_bar_reset">Reset nav bar</string>
+    <string name="menu_ribbon_reset">Reset ribbon</string>
+    <string name="menu_ribbon_rearrange">Rearrange ribbon</string>
     <string name="menu_user_interface_reset">Reset notification wallpaper</string>
     <string name="menu_lockscreens_reset">Reset lockscreen wallpaper</string>
 
@@ -356,6 +361,17 @@
     <string name="navbar_widgets_delete">Delete widget</string>
     <string name="navigation_bar_menu_arrow_keys_title">Menu arrow keys</string>
     <string name="navigation_bar_menu_arrow_keys_summary">Show arrow keys in the navigation bar while typing</string>
+    <string name="title_navbar_timeout">Hidden NavBar Timeout</string>
+    <string name="summary_navbar_timeout">Timeout time for Hidden NavBar Window</string>
+    <string name="hide_navbar_timeout_never">Never</string>
+    <string name="hide_navbar_timeout_1500">1.5 Sec</string>
+    <string name="hide_navbar_timeout_3000">3 Sec</string>
+    <string name="hide_navbar_timeout_5000">5 Sec</string>
+    <string name="hide_navbar_timeout_10000">10 Sec</string>
+    <string name="hide_navbar_timeout_15000">15 Sec</string>
+    <string name="hide_navbar_timeout_30000">30 Sec</string>
+    <string name="navbar_buttons_instructions">Press icon to select actions or custom icon</string>
+    <string name="navbar_delete_menu">Delete button</string>
 
     <!-- Nav Ring Targets -->
     <string name="navbar_ring_cat">Navigation Bar Ring Targets</string>
@@ -391,6 +407,59 @@
     <string name="interface_navring">Ring Targets</string>
     <string name="navbar_ring">Custom Ring Targets</string>
     <string name="navring_enable_long">Enable Longpress for navring</string>
+    <string name="navring_target_save">Navigation Rings saved</string>
+    <string name="navring_target_reset_message">Do you want to reset the Navigation Ring?</string>
+    <string name="navring_target_reset">Navigation Ring targets reset.</string>
+    <string name="choose_action_title">Choose action</string>
+    <string name="choose_action_short_title">Choose short action</string>
+    <string name="choose_action_long_title">Choose long action</string>
+    <string name="action_long_save"> set as long action</string>
+    <string name="navring_target_info">Drag your finger to targets to assign actions</string>
+    <string name="navring_clear">Clear action</string>
+    <string name="navring_short">Short action</string>
+    <string name="navring_long">Long action</string>
+    <string name="navring_icon">Custom icon</string>
+    <string name="navring_target_amount_text">Current number of targets</string>
+    <string name="navring_target_longpress_text">Longpress status</string>
+
+   <!-- Ribbon -->
+    <string name="ribbon_dialog_arrange_title">Ribbon layout</string>
+    <string name="ribbon_instructions">Press icon to select actions or delete</string>
+    <string name="ribbon_targets_cat">Ribbon options</string>
+    <string name="enable_ribbon_text_title">Show app name</string>
+    <string name="enable_ribbon_vibrate_title">Vibrate on touch of swipe area</string>
+    <string name="enable_ribbon_text_summary">Enable the app name text below the icon</string>
+    <string name="ribbon_icon_vibrate_title">Vibrate on target click</string>
+    <string name="ribbon_icon_space_title">Icon ribbon spacing</string>
+    <string name="ribbon_icon_size_title">Icon size</string>
+    <string name="ribbon_icon_size_summary">Set size of your icons</string>
+    <string name="ribbon_lockscreen">Lockscreen ribbon</string>
+    <string name="ribbon_notifications">Notifications ribbon</string>
+    <string name="ribbon_quicksettings">Quick settings ribbon</string>
+    <string name="ribbon_swipe_left">Left swipe ribbon</string>
+    <string name="ribbon_swipe_right">Right swipe ribbon</string>
+    <string name="ribbon_swipe_bottom">Bottom swipe ribbon</string>
+    <string name="clone_title">Choose ribbon to clone</string>
+    <string name="icon_size_normal">Normal</string>
+    <string name="icon_size_20">Medium</string>
+    <string name="icon_size_15">Small</string>
+    <string name="ribbon_left_enable_title">Enable swipe from left</string>
+    <string name="ribbon_right_enable_title">Enable swipe from right</string>
+    <string name="ribbon_bottom_enable_title">Enable swipe from bottom</string>
+    <string name="ribbon_bottom_warning_title">You can not use swipe from bottom with Navbar enabled, must use Navbar AutoHide or manually hide the navbar.</string>
+    <string name="ribbon_button_colorize_title">Action icons match text color</string>
+    <string name="ribbon_color_title">Color of Swipe Ribbon</string>
+    <string name="text_color_title">Color of app label text</string>
+    <string name="ribbon_opacity_title">Opacity of Swipe Ribbon</string>
+    <string name="timeout_spinner_title">Ribbon Auto Timeout</string>
+    <string name="ribbon_drag_handle_width_title">Drag Handle Length</string>
+    <string name="ribbon_drag_handle_height_title">Drag Handle Thickness</string>
+    <string name="ribbon_insert">Insert button</string>
+    <string name="ribbon_handle_location_title">Ribbon Handle Location</string>
+    <string name="ribbon_icon_location_title">Icon gravity</string>
+    <string name="center">Centered</string>
+    <string name="top">Top</string>
+    <string name="bottom">Bottom</string>
 
     <!-- LED -->
     <string name="led_on">LED On</string>
@@ -480,6 +549,7 @@
     <string name="lockscreen_wallpaper_title">Choose lockscreen wallpaper</string>
     <string name="lockscreen_wallpaper_summary">You can remove the wallpaper from the menu in this window</string>
     <string name="lockscreen_text_color_title">Lockscreen text color</string>
+    <string name="lockscreen_text_color_summary">Set the lockscreen text color</string>
     <string name="lockscreen_weather_title">Enable</string>
     <string name="lockscreen_weather_summary">Show Weather Information on Lockscreen. You need to enable ROMControl\'s Weather service to use this</string>
     <string name="lockscreen_weather_type_title">Lockscreen Weather style</string>
@@ -780,6 +850,8 @@
     <string name="recents_gb">Recents (GB style)</string>
     <string name="custom_app">Custom app</string>
     <string name="menu_power">Power menu</string>
+    <string name="aokp_ribbon">AOKP Ribbon</string>
+    <string name="nav_widgets">Nav Widgets</string>
     <string name="blank">Blank</string>
     <string name="none">None</string>
     <string name="take_screenshot">Take Screenshot</string>
