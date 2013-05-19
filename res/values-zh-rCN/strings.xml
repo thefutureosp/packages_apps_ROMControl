@@ -72,6 +72,11 @@
     <string name="menu_nav_bar_reset">重置导航栏</string>
     <string name="menu_ribbon_reset">重置操作区</string>
     <string name="menu_ribbon_rearrange">排序操作区</string>
+<<<<<<< HEAD
+=======
+    <string name="menu_ribbon_toggles">设置开关</string>
+    <string name="menu_ribbon_toggles_error">开关只在使用左右滑动操作区时有效。</string>
+>>>>>>> e1f979c... Updated simplified Chinese translations
     <string name="menu_user_interface_reset">重置背景壁纸</string>
     <string name="menu_lockscreens_reset">重置锁屏壁纸</string>
 
@@ -91,8 +96,7 @@
     <string name="summary_show_navbar_hide">选中将显示导航栏和状态栏开关</string>
     <string name="title_show_volume_state_toggle">显示声音状态</string>
     <string name="title_show_reboot_keyguard">锁屏时显示重新启动</string>
-    <string name="summary_off_show_reboot_keyguard">锁屏时不显示重新启动选项</string>
-    <string name="summary_on_show_reboot_keyguard">锁屏时显示重新启动选项</string>
+    <string name="summary_show_reboot_keyguard">启用将在锁屏时显示重新启动选项</string>
 
     <!-- S Pen -->
     <string name="spen_left_title">左滑动作</string>
@@ -141,6 +145,7 @@
     <string name="aokp_review_summary">AOKP 的 Gerrit ，用于评审提交代码和测试补丁</string>
     <string name="aokp_irc_title">加入我们的 IRC 聊天室</string>
     <string name="about_aokp">关于 AOKP</string>
+    <string name="about_aokp_summary">@null</string>
 
     <!-- General UI 常规界面 -->
     <string name="bootani_cat">开机动画</string>
@@ -522,6 +527,10 @@
     <string name="ribbon_swipe_left">左侧滑动操作区</string>
     <string name="ribbon_swipe_right">右侧滑动操作区</string>
     <string name="ribbon_swipe_bottom">底部滑动操作区</string>
+<<<<<<< HEAD
+=======
+    <string name="app_window">应用程序窗口</string>
+>>>>>>> e1f979c... Updated simplified Chinese translations
     <string name="clone_title">选择复制操作区</string>
     <string name="icon_size_normal">大</string>
     <string name="icon_size_20">中</string>
@@ -540,6 +549,13 @@
     <string name="ribbon_insert">添加按钮</string>
     <string name="ribbon_handle_location_title">滑动区位置</string>
     <string name="ribbon_icon_location_title">图标位置</string>
+<<<<<<< HEAD
+=======
+    <string name="window_text_color_title">窗口文字颜色</string>
+    <string name="window_color_title">窗口颜色</string>
+    <string name="window_opacity_title">窗口不透明度</string>
+    <string name="window_columns_title">窗口列数</string>
+>>>>>>> e1f979c... Updated simplified Chinese translations
     <string name="center">中</string>
     <string name="top">上</string>
     <string name="bottom">下</string>
