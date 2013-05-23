@@ -83,7 +83,6 @@ public class UserInterface extends AOKPPreferenceFragment {
     private static final CharSequence PREF_LONGPRESS_TO_KILL = "longpress_to_kill";
     private static final CharSequence PREF_RECENT_KILL_ALL = "recent_kill_all";
     private static final CharSequence PREF_RAM_USAGE_BAR = "ram_usage_bar";
-    private static final CharSequence PREF_STATUSBAR_BRIGHTNESS = "statusbar_brightness_slider";
     private static final CharSequence PREF_USER_MODE_UI = "user_mode_ui";
     private static final CharSequence PREF_HIDE_EXTRAS = "hide_extras";
     private static final CharSequence PREF_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
@@ -115,7 +114,6 @@ public class UserInterface extends AOKPPreferenceFragment {
     CheckBoxPreference mLongPressToKill;
     CheckBoxPreference mRecentKillAll;
     CheckBoxPreference mRamBar;
-    CheckBoxPreference mStatusbarSliderPreference;
     AlertDialog mCustomBootAnimationDialog;
     CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
 
@@ -175,10 +173,6 @@ public class UserInterface extends AOKPPreferenceFragment {
 
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
-
-        mStatusbarSliderPreference = (CheckBoxPreference) findPreference(PREF_STATUSBAR_BRIGHTNESS);
-        mStatusbarSliderPreference.setChecked(Settings.System.getBoolean(mContentResolver,
-                Settings.System.STATUSBAR_BRIGHTNESS_SLIDER, true));
 
         mNotificationWallpaper = findPreference(PREF_NOTIFICATION_WALLPAPER);
 
@@ -382,11 +376,6 @@ public class UserInterface extends AOKPPreferenceFragment {
             })
             .create()
             .show();
-            return true;
-        } else if (preference == mStatusbarSliderPreference) {
-            Settings.System.putBoolean(mContentResolver,
-                    Settings.System.STATUSBAR_BRIGHTNESS_SLIDER,
-                    isCheckBoxPrefernceChecked(preference));
             return true;
         } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
