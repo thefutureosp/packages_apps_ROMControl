@@ -66,8 +66,11 @@
   <!--Menu Strings-->
   <string name="menu_nav_bar_reset">Obnovit navigační lištu</string>
   <string name="menu_ribbon_reset">Obnovit ribbon</string>
+  <string name="menu_ribbon_apps">Obnovit aplikace</string>
   <string name="menu_ribbon_rearrange">Přeuspořádat ribbon</string>
+  <string name="menu_ribbon_hide">Skrýt aplikace</string>
   <string name="menu_ribbon_toggles">Nastavit přepínače</string>
+  <string name="menu_ribbon_na">Není k dispozici</string>
   <string name="menu_ribbon_toggles_error">Přepínače jsou k dispozici pouze u výsuvného ribbnou zleva a zprava.</string>
   <string name="menu_user_interface_reset">Obnovit pozadí notifikací</string>
   <string name="menu_lockscreens_reset">Obnovit pozadí zamčené obrazovky</string>
@@ -187,6 +190,13 @@
   <string name="ime_switcher_summary">Během psaní ve stavové liště</string>
   <string name="wakeup_when_plugged_unplugged_title">Probudit nabíječkou</string>
   <string name="wakeup_when_plugged_unplugged_summary">Probudit zařízení při připojení/odpojení nabíječky.</string>
+  <string name="system_power_crt_screen_off_title">CRT animace vypnutí</string>
+  <string name="system_power_crt_screen_off_summary">Při vypínání obrazovky se objeví CRT animace</string>
+  <string name="system_power_crt_mode_title">Styl CRT animace</string>
+  <string name="system_power_crt_mode_dialog_title">Zobrazit CRT animaci</string>
+  <string name="system_power_crt_mode_horizontal">Na výšku - horizontálně</string>
+  <string name="system_power_crt_mode_vertical">Na výšku - vertikálně</string>
+  <string name="system_power_crt_mode_both">Dle orientace</string>
   <string name="lefty_mode_title">Režim pro leváky</string>
   <string name="lefty_mode_summary">Prohodit pořadí navigačních prvků (vyžaduje restart UI)</string>
   <string name="rotate_180_title">Umožnit rotaci o 180°</string>
@@ -233,6 +243,7 @@
   <string name="transparency_dialog_match_keyguard_alpha">Přizpůsobit průhlednosti zamčené obrazovky</string>
   <string name="transparency_dialog_transparency">Průhlednost domovské obrazovky</string>
   <string name="transparency_dialog_transparency_keyguard">Průhlednost zamknuté obrazovky</string>
+  <string name="transparency_dialog_lockscreen">Zamčená obrazovka</string>
   <!--LCD Density-->
   <string name="lcd_density_title">Hustota displeje</string>
   <string name="lcd_density_summary">neznámá</string>
@@ -304,8 +315,9 @@
   <string name="toggle_action_title">Akce a ikona pro %1$s</string>
   <string name="toggle_action_title_alt">Akce dlouhého stisku a ikona pro %1$s</string>
   <string name="toggle_longpress_title">Akce dlouhého stisku pro %1$s</string>
-  <string name="custom_toggle_action">Jak to funguje</string>
-  <string name="custom_toggle_desc">V základním režimu přepínač střídá akce při každém stisku. Dlouhým stiskem dojde ke spuštění zobrazené akce. Je to užitečné pro všechny, co chtějí přepínač na spouštění aplikací.\nV pokročilém režimu přepínač umožňuje spouštět akci při každém stisku. Akce dlouhého stisku jsou však také k dispozici. Toto je užitečné pro všechny, kdo nechtějí přepínač na spouštění aplikací, ale provádění jiných úkolů.</string>
+  <string name="custom_toggle_desc">Každé stisknutí přepínače způsobí posunutí na další akci. Pokud nemá přepínač nastavenu akci kliknutí a neurčenou ikonu, bude použita ikona přiřazena akci dlouhého stisku. Toto je vhodné pro použití s jednoduchým přepínáním mezi akcemi bez jejich vyvolání.</string>
+  <string name="custom_help_summary">Jak to funguje</string>
+  <string name="custom_help_summary">Kliknutím pro více informací</string>
   <string name="custom_toggle_okay">Potvrdit</string>
   <string name="custom_toggle_cat">Vlastní přepínač</string>
   <string name="custom_button_cat">Akce vlastního přepínače</string>
@@ -315,9 +327,6 @@
   <string name="boot_action_summary">Spustí počáteční stav při startu</string>
   <string name="match_icon_action_title">Spustí zobrazenou akci</string>
   <string name="match_icon_action_summary">Přiřadí úlohu zobrazené ikoně pro specifické použití</string>
-  <string name="advanced_toggle_title">Pokročilé nebo základní akce</string>
-  <string name="advanced_toggle_summaryon">Pokročilé (akce krátkého i dlouhého stisku)</string>
-  <string name="advanced_toggle_summaryoff">Základní (pouze akce dlouhého stisku)</string>
   <string name="action_toggle_title">Akce přepínače</string>
   <string name="action_toggle_summary">Přepíná pořadí akci z leva do prava</string>
   <string name="no_dclick">Žádná akce</string>
@@ -361,6 +370,7 @@
   <string name="toggle_swagger">Swagger</string>
   <string name="toggle_sync">Synchronizace</string>
   <string name="toggle_torch">Svítilna</string>
+  <string name="toggle_statusbar">Stavová lišta</string>
   <string name="toggle_2g">2G</string>
   <string name="toggle_usb_tether">USB tethering</string>
   <string name="toggle_vibrate">Vibrace</string>
@@ -423,20 +433,6 @@
   <string name="navbar_width_help_summary">100 je 70\%% šířky displeje, 5 je 30\%% šířky displeje. 0 je výchozí šířka podle tlačítek.</string>
   <string name="width_port_title">Šířka kombinované lišty na šířku</string>
   <string name="width_land_title">Šířka kombinované lišty na výšku</string>
-  <string name="navbar_longpress_title">Akce dlouhého stisku tlačítka %1$s</string>
-  <string name="navbar_action_home">Domů</string>
-  <string name="navbar_action_back">Zpět</string>
-  <string name="navbar_action_recents">Přepínač aplikací</string>
-  <string name="navbar_action_recents_gb">Přepínač aplikací (GB styl)</string>
-  <string name="navbar_action_search">Hledat</string>
-  <string name="navbar_action_screenshot">Snímek obrazovky</string>
-  <string name="navbar_action_menu">Menu</string>
-  <string name="navbar_action_ime">Otevřít metody vstupu</string>
-  <string name="navbar_action_kill">Ukončit aplikaci</string>
-  <string name="navbar_action_lastapp">Poslední aplikace</string>
-  <string name="navbar_action_power">Napájení</string>
-  <string name="navbar_action_notifications">Notifikace</string>
-  <string name="navbar_action_none">Prázdné</string>
   <string name="navbar_widgets">Widgety v navigační liště</string>
   <string name="navbar_enable_bar">Povolit lištu</string>
   <string name="navigation_bar_height_title">Výška navigační lišty</string>
@@ -478,6 +474,8 @@
   <string name="navbar_widgets_delete">Smazat widget</string>
   <string name="navigation_bar_menu_arrow_keys_title">Tlačítka šipek</string>
   <string name="navigation_bar_menu_arrow_keys_summary">Zobrazit tlačítka s šipkami v navigační liště během psaní (pro možnost posunu v textu)</string>
+  <string name="statusbar_hide_title">Skrýt stavovou lištu</string>
+  <string name="statusbar_hide_summary">Umožňuje kompletně skrýt stavovou lištu</string>
   <string name="navigation_bar_alpha_title">Viditelnost stavové a navigační lišty</string>
   <string name="navbar_hide_enable_title">Zapnout skrytou navigační lištu</string>
   <string name="drag_handle_opacity_title">Viditelnost symbolu vysunutí</string>
@@ -491,6 +489,12 @@
   <string name="hide_navbar_timeout_10000">10 sekund</string>
   <string name="hide_navbar_timeout_15000">15 sekund</string>
   <string name="hide_navbar_timeout_30000">30 sekund</string>
+  <string name="navbar_buttons_instructions">Stisknutím tlačítka je možné zvolit akce nebo vlastní ikonu</string>
+  <string name="navbar_title_menu">Možnosti tlačítka</string>
+  <string name="navbar_actiontitle_menu">Akce: %1$s</string>
+  <string name="navbar_longpress_menu">Dlouhý stisk: %1$s</string>
+  <string name="navbar_icon_menu">Vlastní ikona</string>
+  <string name="navbar_delete_menu">Smazat tlačítko</string>
   <!--Nav Ring Targets-->
   <string name="navbar_ring_cat">Položky navigačního kruhu</string>
   <string name="navbar_ring">Vlastní položky kruhu</string>
@@ -515,14 +519,20 @@
   <string name="navring_target_longpress_text">Stav dlouhého stisku</string>
   <!--Ribbon-->
   <string name="ribbon_dialog_arrange_title">Rozložení ribbonu</string>
-  <string name="ribbon_instructions">Stisknutím ikony zvolit akce nebo smazat</string>
+  <string name="ribbon_chooser_instructions">Zvolit ribbon k nastavení.</string>
+  <string name="ribbon_instructions">Stisknutím ikon zvolit akce nebo smazat.\nPro více možností je nutné stisknout menu.</string>
   <string name="ribbon_targets_cat">Možnosti ribbonu</string>
   <string name="enable_ribbon_text_title">Zobrazit název aplikace</string>
   <string name="enable_ribbon_vibrate_title">Vibrovat při stisku posuvné plochy</string>
   <string name="enable_ribbon_text_summary">Zapnout zobrazení názvu aplikace pod ikonou</string>
   <string name="ribbon_icon_vibrate_title">Vibrovat při kliknutí na cíl</string>
-  <string name="ribbon_icon_space_title">Mezery mezi ikonami ribbonu</string>
+  <string name="ribbon_icon_space_title">Rozestup mezi ikonami ribbonu</string>
+  <string name="app_window_space_title">Vertikální rozestup mezi ikonami</string>
   <string name="ribbon_icon_size_title">Velikost ikony</string>
+  <string name="ribbon_dismiss_title">Akce skrytí ribbonu</string>
+  <string name="ribbon_animation_duration_title">Délka animace</string>
+  <string name="ribbon_long_swipe_title">Dlouhé potažení na oblasti vysunutí</string>
+  <string name="ribbon_long_press_title">Dlouhý stisk na oblasti vysunutí</string>
   <string name="ribbon_icon_size_summary">Zvolit velikost ikon</string>
   <string name="ribbon_lockscreen">Ribbon na zamčené obrazovce</string>
   <string name="ribbon_notifications">Ribbon v notifikacích</string>
@@ -553,9 +563,17 @@
   <string name="window_color_title">Barva okna</string>
   <string name="window_opacity_title">Viditelnost okna</string>
   <string name="window_columns_title">Sloupce okna</string>
+  <string name="window_app_hide_title">Zvolit aplikace ke skrytí</string>
   <string name="center">Na střed</string>
   <string name="top">Nahoru</string>
   <string name="bottom">Dolů</string>
+  <string name="never">Nikdy</string>
+  <string name="always">Vždy</string>
+  <string name="not_bar">Bez akcí navigační lišty</string>
+  <string name="multi_select_title">Zvolit položky k přidání</string>
+  <string name="ribbon_animation_type_title">Styl animace</string>
+  <string name="ribbon_toggles_button_title">Tlačítko přepínačů vespod</string>
+  <string name="ribbon_hide_ime_title">Skrýt oblast vysunutí klávesice.</string>
   <!--LED-->
   <string name="led_on">LED svítí</string>
   <string name="led_time_on">Doba po kterou LED svítí</string>
@@ -608,8 +626,6 @@
   <string name="lockscreen_music_cat">Hudba</string>
   <string name="lockscreen_weather_cat">Počasí</string>
   <string name="lockscreen_calendar_cat">Kalendář</string>
-  <string name="lockscreen_quick_unlock_control_title">Rychlé odemčení zadáním pinu</string>
-  <string name="lockscreen_quick_unlock_control_summary">Odemknout obrazovku zadáním pinu, bez nutnosti mačkat potvrzovací tlačítko</string>
   <string name="lockscreen_menu_unlock_title">Odemčení tlačítkem menu</string>
   <string name="lockscreen_menu_unlock_summary">Tlačítko menu odemkne obrazovku</string>
   <string name="lockscreen_auto_rotate_title">Rotace zamčené obrazovky</string>
@@ -624,8 +640,6 @@
   <string name="lockscreen_hide_initial_page_hints_summary">Skryje ukazatele widgetů (po levé a pravé straně) na úvodní zamčené obrazovce po zapnutí displeje.</string>
   <string name="lockscreen_minimize_challenge_title">Zmenšený symbol odemknutí</string>
   <string name="lockscreen_minimize_challenge_summary">Nastavit výchozí stav symbolu odemknutí (kruh, gesto, pin) na zmenšený po zapnutí obrazovky.</string>
-  <string name="lockscreen_longpress_challenge_title">Odemknout dlouhým stiskem</string>
-  <string name="lockscreen_longpress_challenge_summary">Umožňuje odemknout zařízení dlouhým stiskem symbolu odemknutí i při maximalizovaných widgetech.</string>
   <string name="lockscreen_use_widget_container_carousel_title">Otočná animace widgetů</string>
   <string name="lockscreen_use_widget_container_carousel_summary">Použít otočnou animaci při přepínání mezi widgety na zamčené obrazovce.</string>
   <string name="volume_rocker_wake_title">Probouzet tlačítky hlasitosti</string>
