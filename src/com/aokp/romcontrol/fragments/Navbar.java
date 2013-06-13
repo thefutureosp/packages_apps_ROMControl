@@ -1,22 +1,12 @@
 package com.aokp.romcontrol.fragments;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
-import android.app.ListFragment;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
@@ -30,11 +20,9 @@ import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.PowerManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
@@ -44,36 +32,32 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.StateSet;
 import android.util.TypedValue;
-import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.internal.util.aokp.AwesomeConstants;
 import com.android.internal.util.aokp.AwesomeConstants.AwesomeConstant;
 import com.android.internal.util.aokp.NavBarHelpers;
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.util.Helpers;
-import com.aokp.romcontrol.ROMControlActivity;
 import com.aokp.romcontrol.util.ShortcutPickerHelper;
 import com.aokp.romcontrol.widgets.NavBarItemPreference;
 import com.aokp.romcontrol.widgets.SeekBarPreference;
-import com.aokp.romcontrol.fragments.NavRingTargets;
-
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class Navbar extends AOKPPreferenceFragment implements
         OnPreferenceChangeListener, ShortcutPickerHelper.OnPickListener {
@@ -145,12 +129,12 @@ public class Navbar extends AOKPPreferenceFragment implements
         menuDisplayLocation = (ListPreference) findPreference(PREF_MENU_UNLOCK);
         menuDisplayLocation.setOnPreferenceChangeListener(this);
         menuDisplayLocation.setValue(Settings.System.getInt(mContentRes,
-                Settings.System.MENU_LOCATION,0) + "");
+                Settings.System.MENU_LOCATION, 0) + "");
 
         mNavBarMenuDisplay = (ListPreference) findPreference(PREF_NAVBAR_MENU_DISPLAY);
         mNavBarMenuDisplay.setOnPreferenceChangeListener(this);
         mNavBarMenuDisplay.setValue(Settings.System.getInt(mContentRes,
-                Settings.System.MENU_VISIBILITY,0) + "");
+                Settings.System.MENU_VISIBILITY, 0) + "");
 
         mNavBarButtonQty = (ListPreference) findPreference(PREF_NAVBAR_QTY);
         mNavBarButtonQty.setOnPreferenceChangeListener(this);
@@ -171,7 +155,7 @@ public class Navbar extends AOKPPreferenceFragment implements
         mGlowTimes.setOnPreferenceChangeListener(this);
 
         float defaultAlpha = Settings.System.getFloat(mContentRes,
-                Settings.System.NAVIGATION_BAR_BUTTON_ALPHA,0.6f);
+                Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.6f);
         mButtonAlpha = (SeekBarPreference) findPreference("button_transparency");
         mButtonAlpha.setInitValue((int) (defaultAlpha * 100));
         mButtonAlpha.setOnPreferenceChangeListener(this);
@@ -409,8 +393,9 @@ public class Navbar extends AOKPPreferenceFragment implements
                                 new File(mContext.getFilesDir(), iconName)).getPath());
 
                 File f = new File(selectedImageUri.getPath());
-                if (f.exists())
+                if (f.exists()) {
                     f.delete();
+                }
 
                 Toast.makeText(
                         getActivity(),
@@ -501,9 +486,10 @@ public class Navbar extends AOKPPreferenceFragment implements
                     && customIconUri.startsWith("file")) {
                 // it's an icon the user chose from the gallery here
                 File icon = new File(Uri.parse(customIconUri).getPath());
-                if (icon.exists())
+                if (icon.exists()) {
                     pAction.setIcon(resize(new BitmapDrawable(getResources(), icon
                             .getAbsolutePath())));
+                }
 
             } else if (customIconUri != null && !customIconUri.equals("")) {
                 // here they chose another app icon

@@ -1,4 +1,3 @@
-
 package com.aokp.romcontrol.fragments;
 
 import android.content.Intent;
@@ -7,7 +6,6 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
-
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 
@@ -40,7 +38,7 @@ public class About extends AOKPPreferenceFragment {
         devsGroup.removeAll();
         devsGroup.setOrderingAsAdded(false);
         Collections.shuffle(devs);
-        for(int i = 0; i < devs.size(); i++) {
+        for (int i = 0; i < devs.size(); i++) {
             Preference p = devs.get(i);
             p.setOrder(i);
 

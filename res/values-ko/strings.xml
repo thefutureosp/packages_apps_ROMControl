@@ -264,7 +264,9 @@
     <string name="summary_down_sec">휴대전화가 뒤집혀 있음을 인식할 시간을 설정</string>
     <string name="flip_action_positive">확인</string>
     <string name="flip_dialog_title">작동 원리</string>
-    <string name="flip_dialog_msg">당신이 어떻게 선택하냐에 따라서 휴대전화가 뒤집히면 진동이나 무음 모드로 전환됩니다. 뒤집힌 다음 모드가 변하기 까지 1.5초(기본값일 경우)가 걸립니다. 그리고 나서 한번 켜진후로부터 15초(기본값일 경우)간 뒤집힘을 감지하지 않습니다. 참고: **뒤집혀서 화면이 꺼진경우 다시 화면을 켜야만 소리 모드가 원래대로 돌아옵니다**</string>
+    <string name="flip_dialog_msg">당신이 어떻게 선택하냐에 따라서 휴대전화가 뒤집히면 진동이나 무음 모드로 전환됩니다. 뒤집힌 다음 모드가 변하기 까지 1.5초(기본값일 경우)가
+        걸립니다. 그리고 나서 한번 켜진후로부터 15초(기본값일 경우)간 뒤집힘을 감지하지 않습니다. 참고: **뒤집혀서 화면이 꺼진경우 다시 화면을 켜야만 소리 모드가 원래대로 돌아옵니다**
+    </string>
     <string name="summary_phone_flip_mode">전화를 받을때 폰을 뒤집으면 무음이 될것입니다.</string>
     <string name="title_phone_flip_mode">전화받기 무음 모드</string>
     <string name="lockscreen_quick_unlock_control_title">빠른 pin 잠금해제</string>

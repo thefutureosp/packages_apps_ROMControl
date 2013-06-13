@@ -19,14 +19,12 @@ package com.aokp.romcontrol.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Intent.ShortcutIconResource;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,31 +34,37 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
-import android.preference.PreferenceFragment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemSelectedListener;
-
-import static com.android.internal.util.aokp.AwesomeConstants.*;
+import android.widget.CompoundButton;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.Toast;
 import com.android.internal.util.aokp.NavRingHelpers;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
-import com.aokp.romcontrol.util.ShortcutPickerHelper;
-import com.aokp.romcontrol.R;
-import com.aokp.romcontrol.util.Helpers;
 import com.aokp.romcontrol.AOKPPreferenceFragment;
+import com.aokp.romcontrol.R;
+import com.aokp.romcontrol.util.ShortcutPickerHelper;
 import com.aokp.romcontrol.ROMControlActivity;
 
-import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.net.URISyntaxException;
-import java.lang.NumberFormatException;
+import java.util.ArrayList;
+
+import static com.android.internal.util.aokp.AwesomeConstants.*;
 
 public class NavRingTargets extends AOKPPreferenceFragment implements
         ShortcutPickerHelper.OnPickListener, GlowPadView.OnTriggerListener {
@@ -95,17 +99,44 @@ public class NavRingTargets extends AOKPPreferenceFragment implements
 
 
     public static enum DialogConstant {
-        ICON_ACTION  { @Override public String value() { return "**icon**";}},
-        LONG_ACTION  { @Override public String value() { return "**long**";}},
-        SHORT_ACTION { @Override public String value() { return "**short**";}},
-        CUSTOM_APP   { @Override public String value() { return "**app**";}},
-        NOT_IN_ENUM  { @Override public String value() { return "**notinenum**";}};
-        public String value() { return this.value(); }
-    }
+        ICON_ACTION {
+            @Override 
+            public String value() { 
+                return "**icon**";
+            }
+        },
+        LONG_ACTION {
+            @Override
+            public String value() {
+                return "**long**";
+            }
+        },
+        SHORT_ACTION {
+             @Override
+             public String value() {
+                 return "**short**";
+             }
+        },
+        CUSTOM_APP {
+              @Override
+              public String value() {
+                  return "**app**";
+              }
+        },
+        NOT_IN_ENUM  {
+              @Override
+              public String value() {
+                  return "**notinenum**";
+              }
+        };
+
+        public String value() {
+            return this.value(); }
+}
 
     public static DialogConstant funcFromString(String string) {
         DialogConstant[] allTargs = DialogConstant.values();
-        for (int i=0; i < allTargs.length; i++) {
+        for (int i = 0; i < allTargs.length; i++) {
             if (string.equals(allTargs[i].value())) {
                 return allTargs[i];
             }
@@ -147,7 +178,7 @@ public class NavRingTargets extends AOKPPreferenceFragment implements
                 getActivity(), android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final String[] entries = getResources().getStringArray(R.array.pref_navring_amount_entries);
-        for (int i = 0; i < entries.length ; i++) {
+        for (int i = 0; i < entries.length; i++) {
             spinnerAdapter.add(entries[i]);
         }
         mTargetNumAmount.setAdapter(spinnerAdapter);
@@ -194,7 +225,7 @@ public class NavRingTargets extends AOKPPreferenceFragment implements
         int middleBlanks = 0;
 
         switch (mCurrentUIMode) {
-            case 0 : // Phone Mode
+            case 0: // Phone Mode
                 if (isScreenPortrait()) { // NavRing on Bottom
                     startPosOffset =  1;
                     endPosOffset =  (mNavRingAmount) + 1;
@@ -208,7 +239,7 @@ public class NavRingTargets extends AOKPPreferenceFragment implements
                     endPosOffset =  startPosOffset - 1;
                 }
                 break;
-            case 1 : // Tablet Mode
+            case 1: // Tablet Mode
                 if (mLefty) { // either lefty or... (Ring is actually on right side of screen)
                     startPosOffset =  (mNavRingAmount) + 1;
                     endPosOffset =  (mNavRingAmount *2) + 1;
@@ -217,22 +248,22 @@ public class NavRingTargets extends AOKPPreferenceFragment implements
                     endPosOffset = (mNavRingAmount * 3) + 1;
                 }
                 break;
-            case 2 : // Phablet Mode - Search Ring stays at bottom
+            case 2: // Phablet Mode - Search Ring stays at bottom
                 startPosOffset =  1;
                 endPosOffset =  (mNavRingAmount) + 1;
                 break;
-         }
+        }
 
-         int middleStart = mNavRingAmount;
-         int tqty = middleStart;
-         int middleFinish = 0;
+        int middleStart = mNavRingAmount;
+        int tqty = middleStart;
+        int middleFinish = 0;
 
-         if (middleBlanks > 0) {
-             middleStart = (tqty/2) + (tqty%2);
-             middleFinish = (tqty/2);
-         }
+        if (middleBlanks > 0) {
+            middleStart = (tqty/2) + (tqty%2);
+            middleFinish = (tqty/2);
+        }
 
-         // Add Initial Place Holder Targets
+        // Add Initial Place Holder Targets
         for (int i = 0; i < startPosOffset; i++) {
             intentList.add(-1);
             storedDraw.add(NavRingHelpers.getTargetDrawable(context, null));
@@ -417,8 +448,9 @@ public class NavRingTargets extends AOKPPreferenceFragment implements
                 customIcons[mTargetIndex] = Uri.fromFile(new File(mContext.getFilesDir(), iconName)).getPath();
 
                 File f = new File(selectedImageUri.getPath());
-                if (f.exists())
+                if (f.exists()) {
                     f.delete();
+                }
 
                 Toast.makeText(
                         getActivity(),
@@ -567,7 +599,9 @@ public class NavRingTargets extends AOKPPreferenceFragment implements
             if (component == null || !mGlowPadView.replaceTargetDrawablesIfPresent(component,
                     ASSIST_ICON_METADATA_NAME,
                     com.android.internal.R.drawable.ic_action_assist_generic)) {
-                if (DEBUG) Log.v(TAG, "Couldn't grab icon for component " + component);
+                if (DEBUG) {
+                    Log.v(TAG, "Couldn't grab icon for component " + component);
+                }
             }
         }
     }

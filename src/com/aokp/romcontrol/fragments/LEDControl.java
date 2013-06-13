@@ -1,14 +1,11 @@
-
 package com.aokp.romcontrol.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Fragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,46 +14,36 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.os.SystemProperties;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnValueChangeListener;
 import android.widget.Spinner;
 import android.widget.Switch;
-
 import com.aokp.romcontrol.R;
-
-import net.margaritov.preference.colorpicker.ColorPickerDialog;
-
 import com.aokp.romcontrol.util.Helpers;
 import com.aokp.romcontrol.util.ShortcutPickerHelper;
+import net.margaritov.preference.colorpicker.ColorPickerDialog;
 
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -187,16 +174,18 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             public void onCheckedChanged(CompoundButton v, boolean checked) {
                 Settings.Secure.putInt(mActivity.getContentResolver(),
                         Settings.Secure.LED_SCREEN_ON, checked ? 1 : 0);
-                if (DEBUG)
+                if (DEBUG) {
                     Log.i(TAG, "LED flash when screen ON is set to: " + checked);
+                }
             }
         });
 
         mChargingLedOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton v, boolean checked) {
                 Helpers.setSystemProp(PROP_CHARGING_LED, checked ? "1" : "0");
-                if (DEBUG)
+                if (DEBUG) {
                     Log.i(TAG, "Charging LED is set to: " + checked);
+                }
             }
         });
 
@@ -348,8 +337,9 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
 
     @Override
     public void onColorChanged(int color) {
-        if (DEBUG)
+        if (DEBUG) {
             Log.d(TAG, "currentSelectedApp = " + currentSelectedApp);
+        }
         if (currentSelectedApp == 0) {
             Settings.System.putInt(mActivity.getContentResolver(),
                     Settings.System.NOTIFICATION_LIGHT_COLOR, color);
@@ -410,8 +400,9 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
                 moveToSettings.add(ca.toString());
             }
             final String value = TextUtils.join("|", moveToSettings);
-            if (DEBUG)
+            if (DEBUG) {
                 Log.e(TAG, "Saved to Settings: " + value);
+            }
             Settings.System.putString(mActivity.getContentResolver(),
                     Settings.System.LED_CUSTOM_VALUES, value);
         }
@@ -459,8 +450,9 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         unicornApps.add(getResources().getString(R.string.led_custom_default));
         unicornApps.add("+App");
 
-        if (DEBUG)
+        if (DEBUG) {
             Log.e(TAG, "currentApps parsed: " + currentApps);
+        }
 
         if (currentApps != null) {
             final String[] array = TextUtils.split(currentApps, "\\|");
@@ -482,13 +474,15 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
             String hashKey = appList.get(key);
             CustomApps custom = customAppList.get(hashKey);
             userColor = custom.appColor;
-            if (DEBUG)
+            if (DEBUG) {
                 Log.d(TAG, "user color from Hash = " + userColor);
+            }
         } else if (id == 0) {
             userColor = Settings.System.getInt(mActivity.getContentResolver(),
                     Settings.System.NOTIFICATION_LIGHT_COLOR, defaultColor);
-            if (DEBUG)
+            if (DEBUG) {
                 Log.d(TAG, "user color from Hash = " + userColor);
+            }
         }
 
     }
@@ -503,8 +497,9 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             if (pos == unicornApps.size() - 1) {
                 mPicker.pickShortcut();
-                if (DEBUG)
+                if (DEBUG) {
                     Log.e(TAG, "Pick a shortcut from click!");
+                }
             }
             if (pos != unicornApps.size() - 1) {
                 updateLEDforNew(pos);
@@ -616,8 +611,9 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
                 return null;
             }
             String[] app = value.split(";", -1);
-            if (app.length != 2)
+            if (app.length != 2) {
                 return null;
+            }
 
             try {
                 CustomApps item = new CustomApps(app[0], Integer.parseInt(app[1]));
@@ -643,11 +639,14 @@ public class LEDControl extends Fragment implements ColorPickerDialog.OnColorCha
         try {
             Intent intent = Intent.getIntent(uri);
             packageName = intent.resolveActivity(pm).getPackageName();
-            if (DEBUG)
+            if (DEBUG) {
                 Log.e(TAG, uri);
-            if (DEBUG)
+            }
+            if (DEBUG) {
                 Log.e(TAG, packageName);
-        } catch (URISyntaxException e) { }
+            }
+        } catch (URISyntaxException e) {
+        }
 
         if (packageName != null) {
             addCustomApp(packageName);

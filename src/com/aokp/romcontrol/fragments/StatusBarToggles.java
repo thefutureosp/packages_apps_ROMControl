@@ -1,9 +1,7 @@
-
 package com.aokp.romcontrol.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -19,7 +17,6 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceGroup;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.ContactsContract;

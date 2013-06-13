@@ -21,9 +21,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.TwoStatePreference;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -148,7 +148,7 @@ public class UserInterface extends AOKPPreferenceFragment {
         mStatusBarNotifCount.setChecked(Settings.System.getBoolean(mContentResolver,
                 Settings.System.STATUSBAR_NOTIF_COUNT, false));
 
-        mDisableBootAnimation = (CheckBoxPreference)findPreference(PREF_DISABLE_BOOTANIM);
+        mDisableBootAnimation = (CheckBoxPreference) findPreference(PREF_DISABLE_BOOTANIM);
 
         mCustomBootAnimation = findPreference(PREF_CUSTOM_BOOTANIM);
 
@@ -163,10 +163,10 @@ public class UserInterface extends AOKPPreferenceFragment {
         mVibrateOnExpand.setChecked(Settings.System.getBoolean(mContentResolver,
                 Settings.System.VIBRATE_NOTIF_EXPAND, true));
         if (!hasVibration) {
-            ((PreferenceGroup)findPreference(PREF_NOTIFICATION_VIBRATE)).removePreference(mVibrateOnExpand);
+            ((PreferenceGroup) findPreference(PREF_NOTIFICATION_VIBRATE)).removePreference(mVibrateOnExpand);
         }
 
-        mLongPressToKill = (CheckBoxPreference)findPreference(PREF_LONGPRESS_TO_KILL);
+        mLongPressToKill = (CheckBoxPreference) findPreference(PREF_LONGPRESS_TO_KILL);
         mLongPressToKill.setChecked(Settings.System.getInt(mContentResolver,
                 Settings.System.KILL_APP_LONGPRESS_BACK, 0) == 1);
         if (!hasHardwareButtons) {
@@ -190,7 +190,7 @@ public class UserInterface extends AOKPPreferenceFragment {
                         Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, true));
 
         // hide option if device is already set to never wake up
-        if(!mContext.getResources().getBoolean(
+        if (!mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
             ((PreferenceGroup) findPreference(PREF_DISPLAY)).removePreference(mWakeUpWhenPluggedOrUnplugged);
         }
@@ -221,7 +221,7 @@ public class UserInterface extends AOKPPreferenceFragment {
      */
     private boolean resetBootAnimation() {
         boolean bootAnimationExists = false;
-        if(new File(BOOTANIMATION_USER_PATH).exists()) {
+        if (new File(BOOTANIMATION_USER_PATH).exists()) {
             mBootAnimationPath = BOOTANIMATION_USER_PATH;
             bootAnimationExists = true;
         } else if (new File(BOOTANIMATION_SYSTEM_PATH).exists()) {
@@ -235,7 +235,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     }
 
     private void resetSwaggedOutBootAnimation() {
-        if(new File("/data/local/bootanimation.user").exists()) {
+        if (new File("/data/local/bootanimation.user").exists()) {
             // we're using the alt boot animation
             String moveAnimCommand = "mv /data/local/bootanimation.user /data/local/bootanimation.zip";
             // we must wait for this command to finish before we continue
@@ -456,15 +456,16 @@ public class UserInterface extends AOKPPreferenceFragment {
                     return; // NOOOOO
                 } finally {
                     try {
-                        if (wallpaperStream != null)
+                        if (wallpaperStream != null) {
                             wallpaperStream.close();
+                        }
                     } catch (IOException e) {
                         // let it go
                     }
                 }
                 Helpers.restartSystemUI();
             } else if (requestCode == REQUEST_PICK_BOOT_ANIMATION) {
-                if (data==null) {
+                if (data == null) {
                     //Nothing returned by user, probably pressed back button in file manager
                     return;
                 }
@@ -477,7 +478,7 @@ public class UserInterface extends AOKPPreferenceFragment {
     private void openBootAnimationDialog() {
         resetSwaggedOutBootAnimation();
         Log.e(TAG, "boot animation path: " + mBootAnimationPath);
-        if(mCustomBootAnimationDialog != null) {
+        if (mCustomBootAnimationDialog != null) {
             mCustomBootAnimationDialog.cancel();
             mCustomBootAnimationDialog = null;
         }
@@ -604,20 +605,23 @@ public class UserInterface extends AOKPPreferenceFragment {
             return;
         } finally {
             try {
-                if (bufferedReader != null)
+                if (bufferedReader != null) {
                     bufferedReader.close();
+                }
             } catch (IOException e) {
                 // we tried
             }
             try {
-                if (inputStreamReader != null)
+                if (inputStreamReader != null) {
                     inputStreamReader.close();
+            }
             } catch (IOException e) {
                 // we tried
             }
             try {
-                if (inputStream != null)
+                if (inputStream != null) {
                     inputStream.close();
+                }
             } catch (IOException e) {
                 // moving on...
             }
@@ -631,8 +635,7 @@ public class UserInterface extends AOKPPreferenceFragment {
         try {
             if (info.length > 2) {
                 partName2 = info[2].split(" ")[3];
-            }
-            else {
+            } else {
                 partName2 = "";
             }
         } catch (Exception e) {
@@ -659,8 +662,9 @@ public class UserInterface extends AOKPPreferenceFragment {
                                 BitmapFactory.decodeStream(partOneInStream,
                                         null, opt)), delay);
                     } finally {
-                        if (partOneInStream != null)
+                        if (partOneInStream != null) {
                             partOneInStream.close();
+                        }
                     }
                 } else if (partName2.equalsIgnoreCase(partname)) {
                     InputStream partTwoInStream = null;
@@ -670,8 +674,9 @@ public class UserInterface extends AOKPPreferenceFragment {
                                 BitmapFactory.decodeStream(partTwoInStream,
                                         null, opt)), delay);
                     } finally {
-                        if (partTwoInStream != null)
+                        if (partTwoInStream != null) {
                             partTwoInStream.close();
+                        }
                     }
                 }
             }
@@ -785,8 +790,9 @@ public class UserInterface extends AOKPPreferenceFragment {
                 if (mDisableBootAnimation.isChecked()) {
                     // do not show same insult as last time
                     int newInsult = mRandomGenerator.nextInt(mInsults.length);
-                    while (newInsult == mLastRandomInsultIndex)
+                    while (newInsult == mLastRandomInsultIndex) {
                         newInsult = mRandomGenerator.nextInt(mInsults.length);
+                    }
 
                     // update our static index reference
                     mLastRandomInsultIndex = newInsult;

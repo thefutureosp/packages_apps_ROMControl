@@ -63,11 +63,12 @@ public class AOKPPreferenceFragment extends PreferenceFragment implements Dialog
         mContext = getActivity();
         mActionBar = getActivity().getActionBar();
         mContentRes = getActivity().getContentResolver();
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mShortcutFragment = getArguments().getBoolean("started_from_shortcut", false);
         }
-        if(!mShortcutFragment)
+        if (!mShortcutFragment) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         Vibrator mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (mVibrator != null && mVibrator.hasVibrator()) {
@@ -77,12 +78,12 @@ public class AOKPPreferenceFragment extends PreferenceFragment implements Dialog
 
     public static boolean isTablet(Context context) {
         return Settings.System.getInt(context.getContentResolver(),
-                Settings.System.CURRENT_UI_MODE,0) == 1;
+                Settings.System.CURRENT_UI_MODE, 0) == 1;
     }
 
     public static boolean isPhablet(Context context) {
         return Settings.System.getInt(context.getContentResolver(),
-                Settings.System.CURRENT_UI_MODE,0) == 2;
+                Settings.System.CURRENT_UI_MODE, 0) == 2;
     }
 
     public static boolean isSW600DPScreen(Context context) {
@@ -303,7 +304,7 @@ public class AOKPPreferenceFragment extends PreferenceFragment implements Dialog
     }
 
     protected boolean isCheckBoxPrefernceChecked(Preference p) {
-        if(p instanceof CheckBoxPreference) {
+        if (p instanceof CheckBoxPreference) {
             return ((CheckBoxPreference) p).isChecked();
         } else {
             return false;

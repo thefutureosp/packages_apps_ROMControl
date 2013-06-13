@@ -12,7 +12,7 @@
             android:title="@string/custom_bootanimation_title"
             android:summary="@string/custom_bootanimation_summary" />
 
-         <CheckBoxPreference
+        <CheckBoxPreference
             android:key="disable_bootanimation"
             android:title="@string/disable_bootanimation_title" />
 
@@ -48,7 +48,7 @@
 
     </PreferenceCategory>
 
-     <PreferenceCategory
+        <PreferenceCategory
             android:key="display"
             android:title="@string/display_cat">
 

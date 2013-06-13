@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.PowerManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -15,7 +13,6 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
-
 import com.aokp.romcontrol.AOKPPreferenceFragment;
 import com.aokp.romcontrol.R;
 import com.aokp.romcontrol.service.FlipService;
@@ -72,11 +69,13 @@ public class Sound extends AOKPPreferenceFragment
             getPreferenceScreen().removePreference(mPhoneSilent);
         }
 
-        if (HeadphoneService.DEBUG)
+        if (HeadphoneService.DEBUG) {
             mContext.startService(new Intent(mContext, HeadphoneService.class));
+        }
 
-        if (FlipService.DEBUG)
+        if (FlipService.DEBUG) {
             mContext.startService(new Intent(mContext, FlipService.class));
+        }
     }
 
     @Override
