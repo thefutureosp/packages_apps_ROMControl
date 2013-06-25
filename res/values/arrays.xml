@@ -136,7 +136,9 @@
         <item>@string/icon_with_text</item>
         <item>@string/icon_with_centered_text</item>
         <item>@string/circlemod</item>
-        <item>@string/full_circle</item>
+        <item>@string/cm_circle</item>
+        <item>@string/cm_circle_percentage</item>
+        <item>@string/circle_dotted_percentage</item>
         <item>@string/gauge</item>
         <item>@string/axiom_honeycomb</item>
         <item>@string/axiom_droid</item>
@@ -159,6 +161,8 @@
         <item>10</item>
         <item>11</item>
         <item>12</item>
+        <item>13</item>
+        <item>14</item>
     </string-array>
 
     <!-- NavBar -->

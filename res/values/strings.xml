@@ -793,7 +793,9 @@
     <string name="icon_with_text">Icon with text</string>
     <string name="icon_with_centered_text">Icon with centered text</string>
     <string name="circlemod">AOKP CircleMOD</string>
-    <string name="full_circle">CM CircleMOD</string>
+    <string name="cm_circle">CM CircleMOD</string>
+    <string name="cm_circle_percentage">CM CircleMOD with percentage</string>
+    <string name="circle_dotted_percentage">Circle dotted with percentage</string>
     <string name="gauge">Gauge</string>
     <string name="axiom_honeycomb">Axiom Honeycomb</string>
     <string name="axiom_droid">Axiom Droid</string>
