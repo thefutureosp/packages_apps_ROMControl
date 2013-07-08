@@ -321,22 +321,22 @@
             android:gravity="center_vertical" >
 
             <TextView
-                android:id="@+id/lockscreen_target_longpress_id"
+                android:id="@+id/lockscreen_targets_use_eight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="4dip"
-                android:layout_toLeftOf="@id/longpress_switch"
+                android:layout_toLeftOf="@+id/lockscreen_use_eight_targets_switch"
                 android:ellipsize="marquee"
                 android:gravity="left"
                 android:padding="4dip"
                 android:singleLine="true"
-                android:text="@string/lockscreen_target_longpress_text"
+                android:text="@string/lockscreen_target_use_eight_text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#FFFFFF" />
 
             <Switch
-                android:id="@+id/longpress_switch"
+                android:id="@+id/lockscreen_use_eight_targets_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

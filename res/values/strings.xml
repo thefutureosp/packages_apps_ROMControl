@@ -611,7 +611,7 @@
     <!-- Lockscreen Targets-->
     <string name="lockscreen_targets_title">Lockscreen targets</string>
     <string name="lockscreen_targets_summary">Lockscreen targets summary…</string>
-    <string name="lockscreen_target_longpress_text">Longpress actions</string>
+    <string name="lockscreen_target_use_eight_text">Use 8 targets on lock screen</string>
     <string name="lockscreen_camera">Camera</string>
     <string name="lockscreen_unlock">Unlock</string>
     <string name="save_error">Could not save targets! You must have at least one unlock target!</string>
@@ -629,7 +629,7 @@
     <string name="lockscreen_target_reset_message">Delete all user created lockscreen target and restore to default?</string>
     <string name="lockscreen_target_edit_title">Edit target and icon</string>
     <string name="lockscreen_target_edit_msg">Select or change the desired application or activity and the associated icon</string>
-    <string name="lockscreen_target_longpress_summary">Enables long press options for lock screen targets</string>
+    <string name="lockscreen_target_use_eight_summary">Enables 8 spots for lock screen targets</string>
 
     <!-- Weather -->
     <string name="weather_enable">Enable weather</string>
@@ -946,5 +946,39 @@
     <!-- haptic feedback on toggle press -->
     <string name="toggles_enable_haptic_feedback_title">Enable haptic feedback</string>
     <string name="toggles_enable_haptic_feedback_summary">Use haptic feedback when pressing toggles</string>
+
+    <!-- Lock screen shortcuts -->
+    <string name="picker_activities">Activities</string>
+    <string name="select_custom_activity_title">Select custom activity</string>
+    <string name="icon_picker_choose_icon_title">Choose icon</string>
+    <string name="icon_picker_alarm">Alarm</string>
+    <string name="icon_picker_browser">Browser</string>
+    <string name="icon_picker_calendar">Calendar</string>
+    <string name="icon_picker_camera">Camera</string>
+    <string name="icon_picker_chrome">Chrome</string>
+    <string name="icon_picker_contacts">Contacts</string>
+    <string name="icon_picker_email">Email</string>
+    <string name="icon_picker_email2">Email Holo</string>
+    <string name="icon_picker_facebook">Facebook</string>
+    <string name="icon_picker_gallery">Gallery</string>
+    <string name="icon_picker_google_small">Google (small)</string>
+    <string name="icon_picker_googleplus">Google Plus</string>
+    <string name="icon_picker_googletalk">Hangouts</string>
+    <string name="icon_picker_maps">Maps</string>
+    <string name="icon_picker_movie">Movie</string>
+    <string name="icon_picker_music">Music</string>
+    <string name="icon_picker_nav_normal">Navigation</string>
+    <string name="icon_picker_phone">Phone</string>
+    <string name="icon_picker_podcast">Podcast</string>
+    <string name="icon_picker_rss">Rss</string>
+    <string name="icon_picker_search">Search</string>
+    <string name="icon_picker_sms">Messaging</string>
+    <string name="icon_picker_twitter">Twitter</string>
+
+    <!-- String for IconPicker -->
+    <string name="icon_picker_title">Choose icon source</string>
+    <string name="icon_picker_system_icons_title">System icons</string>
+    <string name="icon_picker_gallery_title">Gallery</string>
+    <string name="profile_applist_title">Applications</string>
 
 </resources>
