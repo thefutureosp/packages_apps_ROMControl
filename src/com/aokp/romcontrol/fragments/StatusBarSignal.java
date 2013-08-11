@@ -24,6 +24,7 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
     ColorPickerPreference mWifiColorPicker;
     CheckBoxPreference mHideSignal;
     CheckBoxPreference mAltSignal;
+    CheckBoxPreference mStatusBarTraffic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,10 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
         mAltSignal.setChecked(Settings.System.getBoolean(mContentRes,
                 Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT, false));
 
+        mStatusBarTraffic = (CheckBoxPreference) findPreference("status_bar_traffic");
+        mStatusBarTraffic.setChecked(Settings.System.getBoolean(mContentRes,
+                Settings.System.STATUS_BAR_TRAFFIC, false));
+
         if (Integer.parseInt(mDbmStyletyle.getValue()) == 0) {
             mColorPicker.setEnabled(false);
         }
@@ -77,6 +82,11 @@ public class StatusBarSignal extends AOKPPreferenceFragment implements
             Settings.System.putBoolean(mContentRes,
                     Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT, mAltSignal.isChecked());
             Helpers.restartSystemUI();
+            return true;
+        } else if (preference == mStatusBarTraffic) {
+            Settings.System.putBoolean(mContentRes,
+                    Settings.System.STATUS_BAR_TRAFFIC, mStatusBarTraffic.isChecked());
+
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
