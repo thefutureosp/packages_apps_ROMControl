@@ -41,7 +41,6 @@ public class Weather extends AOKPPreferenceFragment implements
 
     CheckBoxPreference mEnableWeather;
     CheckBoxPreference mUseCustomLoc;
-    CheckBoxPreference mShowLoc;
     CheckBoxPreference mUseCelcius;
     ListPreference mStatusBarLocation;
     ListPreference mWeatherSyncInterval;
@@ -88,10 +87,6 @@ public class Weather extends AOKPPreferenceFragment implements
 
         mUseCustomLoc = (CheckBoxPreference) findPreference(WeatherPrefs.KEY_USE_CUSTOM_LOCATION);
         mUseCustomLoc.setChecked(WeatherPrefs.getUseCustomLocation(mContext));
-
-        mShowLoc = (CheckBoxPreference) findPreference("show_location");
-        mShowLoc.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.WEATHER_SHOW_LOCATION, 0) == 1);
 
         mUseCelcius = (CheckBoxPreference) findPreference(WeatherPrefs.KEY_USE_CELCIUS);
         mUseCelcius.setChecked(WeatherPrefs.getUseCelcius(mContext));
@@ -192,11 +187,6 @@ public class Weather extends AOKPPreferenceFragment implements
         } else if (preference == mUseCustomLoc) {
             return WeatherPrefs.setUseCustomLocation(mContext,
                     ((CheckBoxPreference) preference).isChecked());
-        } else if (preference == mShowLoc) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.WEATHER_SHOW_LOCATION,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;
         } else if (preference == mUseCelcius) {
             return WeatherPrefs.setUseCelcius(mContext,
                     ((CheckBoxPreference) preference).isChecked());
